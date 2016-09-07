@@ -48,25 +48,6 @@ var Queue = function() {
 };
 
 Tree.prototype.BFS = function() {
-  // Initiate a queue
-  var queue = [];
-  var results = [];
-
-  // Add current children to the queue with a for loop
-  for (var i = 0; i < this.children.length; i++) {
-    queue.push(this.children[i])
-  }
-
-  // While loop until queue is empty
-  while (/*???*/) {
-    // add current children to the queue with a for loop
-    for (var i = 0; i < queue.length; i++) {
-      if (queue.children.length > 0) {
-        
-      }
-    }
-  }
-
 
 };
 
