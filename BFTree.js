@@ -48,7 +48,21 @@ var Queue = function() {
 };
 
 Tree.prototype.BFS = function() {
-
+  var queue = [this];
+  var repeat = true;
+  while (repeat) {
+    repeat = false;
+    for (var i = 0; i < queue.length; i++) {
+      if (queue[i].children.length > 0) {
+        repeat = true;
+        for (var j = 0; i < queue[j].children.length; j++) {
+          queue.push(queue[i].children[j])
+        }
+        queue[i].children = [];
+      }
+    }
+  }
+  return queue;
 };
 
 /**
