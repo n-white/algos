@@ -104,10 +104,18 @@ LRUCache.prototype.full = function() {
 }
 
 LRUCache.prototype.prune = function() {
-
+  // Remove the oldest node in the linked list
+  var oldest = this._ordering.pop();
+  // Delete it from the items object 
+  // confused because i thought ordering didn't have key values????
+  delete this._items[oldest.key]
+  // Decrement the size value
+  this._size = Math.max(0, this._size - 1)
 }
 
-
+LRUCache.prototype.promote = function(item) {
+  this._ordering.moveToFront(item.node);
+}
 
 
 
