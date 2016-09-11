@@ -69,4 +69,11 @@ var deepEquals = function(apple, orange){
 console.log(deepEquals({a:1, b: {c:3}},{a:1, b: {c:3}})); // true
 console.log(deepEquals({a:1, b: {c:5}},{a:1, b: {c:6}})); // false
 
-
+// THINGS I LEARNED
+// (1) Instance of is similar to typeof but typeof is used for telling apart the different 'primitive types'
+// So "typeof null" will give you an 'object'
+// Whereas instanceof checks the constructor
+// If you have a class of Person and create an instance of person called 'dave'
+// then 'dave instance of Person' will return true
+// 'dave instanceof Object' will also return true because Person.prototype is an object
+// (2) Object.keys is an awesome way of making it so you can run arrays and objects through the same for loop
