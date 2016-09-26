@@ -78,7 +78,7 @@ class LinkedList:
 # Function to convert tree to series of linked lists
 def tree_list(tree):
 
-	result_list = {}
+	result_list = []
 
 	def recursive_creation(tree_node, depth):
 
@@ -88,13 +88,12 @@ def tree_list(tree):
 			return
 		
 		# Create linked list or add to an existing one
-		if str(depth) not in result_list:
+		if len(result_list) - 1 < depth:
 			print 'new list ', tree_node.value
-			result_list[str(depth)] = LinkedList(tree_node.value)
+			result_list.append([tree_node.value])
 		else:
 			print 'add to list ', tree_node.value
-			# print 'print nodes', result_list[depth].print_nodes()
-			result_list[str(depth)].add_to_tail(tree_node.value)
+			result_list[depth].append(tree_node.value)
 
 		depth = depth + 1
 
@@ -112,7 +111,10 @@ def tree_list(tree):
 
 tree1 = create_tree(list1)
 list_of_lists = tree_list(tree1)
+print list_of_lists
 
+# LOGIC WORKS CORRECTLY BUT CAN'T FIGURE OUT HOW TO GET AN ACTUAL LINKED LIST TO ADD AT EACH INDEX VALUE
+# PROBLEM IS THAT WHEN YOU ADD A LINKED LIST IN A DICTIONARY OR LIST THEN YOU CAN'T CALL THE METHODS ON IT FOR SOME REASON
 
 
 
