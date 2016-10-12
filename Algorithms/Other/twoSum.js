@@ -84,16 +84,16 @@ var twoSumHash = function(nums, target) {
 		var offsetNumber = target - nums[i];
 		// See if the offset number needed exists
 		var offsetPositionLookup = hash.contains(offsetNumber);
-		console.log(nums[i], offsetNumber, offsetPositionLookup)
+		console.log(i, nums[i], offsetNumber, offsetPositionLookup)
 		// Check if the offset number needed was hashed already and not equal to the current number we are looking at
-		if (!!offsetPositionLookup) {
+		if (offsetPositionLookup !== false) {
 			return [i, offsetPositionLookup];
 		}
 		// Add current number to the hash
 		hash.add(nums[i], i);
 	}
-	console.log(hash.storage)
 	return 'no solution exists';
 }
 
-console.log(twoSumHash([1, 2, 11, 7, 15], 9));
+// console.log(twoSumHash([1, 2, 11, 7, 15], 9));
+console.log(twoSumHash([0, 4, 3, 0], 0));	
