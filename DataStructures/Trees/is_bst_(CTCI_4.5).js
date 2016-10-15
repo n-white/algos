@@ -48,6 +48,7 @@ BinarySearchTree.prototype.contains = function(value) {
 	return false;
 }
 
+// METHOD 1: USING DFS
 // CTCI problem to test if tree is a BST tree
 BinarySearchTree.prototype.isBST = function() {
 	
@@ -84,6 +85,43 @@ BinarySearchTree.prototype.isBST = function() {
 
 }
 
+// METHOD 2: Pass down the min and max each time
+// Assumption is that ALL node values on the left should be less than current node and greater than on the right side
+BinarySearchTree.prototype.checkBST = function(min, max) {
+
+	// BASE CASE 1: Check left side
+	if (min !== null) {
+		if (this.value > min) {
+			return false;
+		}
+	}
+
+	// BASE CASE 2: Check right side
+	if (max !== null) {
+		if (this.value < max) {
+			return false;
+		}
+	}
+
+	// RECURSIVE CASE: check left if not null
+	if (this.left !== null) {
+		if (!this.left.checkBST(this.value, null)) {
+			return false;
+		}
+	}
+
+	// RECURSIVE CASE: check right if not null
+	if (this.right !== null) {
+		if (!this.right.checkBST(null, this.value)) {
+			return false;
+		}
+	}
+
+	// If no exceptions found, return true
+	return true;
+
+}
+
 var test = new BinarySearchTree(5);
 test.insert(2);
 test.insert(3);
@@ -105,6 +143,19 @@ not_BST_on_right.right.left = new BinarySearchTree(7);
 not_BST_on_right.right.right = new BinarySearchTree(8);
 
 console.log('should be true: ', test.contains(3))
+
+// Check BST using method one (depth first search)
 console.log('should be true: ', test.isBST());
 console.log('should be false: ', not_BST_on_left.isBST());
 console.log('should be false: ', not_BST_on_right.isBST());
+
+// Check BST using method two (checking vs each min and max value, but this is also DFS)
+console.log('should be true: ', test.checkBST());
+console.log('should be false: ', not_BST_on_left.checkBST());
+console.log('should be false: ', not_BST_on_right.checkBST());
+
+
+// LESSONS LEARNED
+// Best time complexity is O(N) since any algorithm must touch all nodes
+// Due to the use of recursion, the space complexity is O(Log N) because there are up to O(Log N) recursive calls ...
+// ... on the stack since we may recurse up the depth of the tree
