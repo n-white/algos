@@ -25,6 +25,12 @@ Graph.prototype.removeNode = function(node) {
   delete this.nodes[node];
 };
 
+Graph.prototype.resetVisitedFlags = function() {
+  for (key in this.nodes) {
+    this.nodes[key].visited = false;
+  }
+}
+
 Graph.prototype.addEdge = function(fromNode, toNode) {
   this.nodes[fromNode.value].outgoingEdge[toNode.value] = toNode;
   this.nodes[toNode.value].incomingEdge[fromNode.value] = fromNode;
@@ -94,7 +100,6 @@ test.addNode(node8);
 test.addNode(node9);
 test.addNode(node10);
 
-
 test.addEdge(node1, node2);
 test.addEdge(node1, node3);
 test.addEdge(node3, node4);
@@ -121,5 +126,7 @@ test.addEdge(node4, node1);
 //           /     
 //          9
 
-console.log(searchRoute(test.nodes['1'], test.nodes['10']))
+console.log('should be true: ', searchRoute(test.nodes['1'], test.nodes['10']));
+test.resetVisitedFlags();
+console.log('should be false: ', searchRoute(test.nodes['7'], test.nodes['3']));
 
