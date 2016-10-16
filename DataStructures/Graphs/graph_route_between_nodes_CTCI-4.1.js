@@ -109,17 +109,17 @@ test.addEdge(node4, node1);
 
 // Graph now looks like this:
 
-// /-----1
-// |    / \
-// |   2   3
-// |      / \
-// \-----4   5
-//         / \
-//        6   7
+//   /-----1
+//   |    / \
+//   |   2   3
+//   |      / \
+//   \-----4   5
 //           / \
-//          8  10
-//         /     
-//        9
+//          6   7
+//             / \
+//            8  10
+//           /     
+//          9
 
 console.log(searchRoute(test.nodes['1'], test.nodes['10']))
 
