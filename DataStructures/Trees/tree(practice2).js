@@ -29,38 +29,15 @@ Tree.prototype.breadthFirstSearch = function(target) {
 	while (queue.length) {
 		for (var i = 0; i < queue.length; i++) {
 			var current = queue.shift()
+			console.log(current.value);
 			if (current.value === target) { return true; }
 			for (var j = 0; j < current.children.length; j++) {
-				queue.unshift(current.children[i])
+				queue.push(current.children[i])
 				i++
 			}
 		}
 	}
 	return false;
-}
-
-Tree.prototype.isBalanced = function() {
-	// Create a queue
-	var queue = [this];
-	// Iterate through the queue
-	while (queue.length) {
-		for (var i = 0; i < queue.length; i++) {
-			var current = queue.shift()
-			if (current.value === target) { return true; }
-			if (current.children.length === 0) { queue.unshift(null) }
-			for (var j = 0; j < current.children.length; j++) {
-				if (current.children[i] === null) {
-					current.children[i] = 'lastCall'
-				}
-				if (current.children[i] === 'lastCall') {
-					return false;
-				}
-				queue.unshift(current.children[i])
-				i++
-			}
-		}	
-	}
-	return true;
 }
 
 Tree.prototype.isDescendant = function(child) {
@@ -145,11 +122,11 @@ test.children[0].children[1].children.push(childNode10);
 
 var notChildNode = new Tree(12);
 
-console.log(test.depthFirstSearch(7));
+// console.log(test.depthFirstSearch(7));
 console.log(test.breadthFirstSearch(7));
-console.log(test.isDescendant(childNode8));
-console.log(test.isDescendant(notChildNode));
-console.log(test.getAncestorPath(childNode8));
-console.log(test.findCommonAncestor(childNode8, childNode10));
+// console.log(test.isDescendant(childNode8));
+// console.log(test.isDescendant(notChildNode));
+// console.log(test.getAncestorPath(childNode8));
+// console.log(test.findCommonAncestor(childNode8, childNode10));
 
-console.log(test.isBalanced(test));
+// console.log(test.isBalanced(test));
